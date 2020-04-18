@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Rock Paper Scissors</title>
+  <style>
+
+  </style>
+</head>
+<body>
+
+  <p></p>
+
+  <script>
+  
+let computerScore = 0;
+let playerScore = 0;
+
+
+
+function computerPlay() { 
+  
+const pick = ["Rock", "Paper", "Scissors"];
+const randomPick = pick[Math.floor(Math.random() * pick.length)];
+
+return randomPick }
+
+function playRound(playerSelection, computerSelection) {
+	// your code here!
+	
+		
+	if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
+	
+	console.log( 'It\'s a draw!' );
+	}
+	
+	else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {
+	playerScore++;
+	console.log( 'Rock beats Scissors, Player wins!' );
+	
+	}
+	
+	else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {
+	computerScore++;
+	console.log( 'Rock beats Scissors, Computer wins!' );
+	}
+	
+	else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
+	computerScore++;
+	console.log( 'Paper beats Rock, Computer wins!' );
+	}
+	
+	else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {
+	playerScore++;
+	console.log( 'Paper beats Rock, Player wins!' );
+	
+	}
+	
+	else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {
+	computerScore++;
+	console.log( 'Scissors beats Paper, Computer wins!' );
+	}
+	
+	else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {
+	playerScore++;
+	console.log( 'Scissors beats Paper, Player wins!' );
+	}
+}
+
+function game() {
+let computerSelection = computerPlay();
+let playerSelection = window.prompt('Choose your fighter!');
+playRound(playerSelection, computerSelection);
+
+let computerSelection2 = computerPlay();
+let playerSelection2 = window.prompt('Choose your fighter!');
+playRound(playerSelection2, computerSelection2);
+
+let computerSelection3 = computerPlay();
+let playerSelection3 = window.prompt('Choose your fighter!');
+playRound(playerSelection3, computerSelection3);
+
+let computerSelection4 = computerPlay();
+let playerSelection4 = window.prompt('Choose your fighter!');
+playRound(playerSelection4, computerSelection4);
+
+let computerSelection5 = computerPlay();
+let playerSelection5 = window.prompt('Choose your fighter!');
+playRound(playerSelection5, computerSelection5);
+
+if (playerScore>computerScore) {
+alert ( 'Player wins the game ' + playerScore + ' to ' + computerScore + '!' );
+}
+
+if (computerScore>playerScore) {
+alert ( 'Skynet wins the game ' + computerScore + ' to ' + playerScore + '!' );
+}
+
+else {
+alert ( 'It appears we have a draw!' );
+}
+
+
+}
+
+
+
+  </script>
+</body>
+</html>
