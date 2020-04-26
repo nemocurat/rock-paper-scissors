@@ -4,104 +4,153 @@
   <meta charset="utf-8">
   <title>Rock Paper Scissors</title>
   <style>
+	.start {
+		padding: 20px 0px;
+	} 
+	#start {
 
+		background-color:darkslategray;
+		color: white;
+		padding: 10px 20px;
+
+	}
   </style>
 </head>
 <body>
+<div>
+	<p>Choose your fighter</p> 
+	<button id='rock'>Rock</button>
+	<button id='paper'>Paper</button>
+	<button id='scissors'>Scissors</button>
+</div>
 
-  <p></p>
+<div>
+	<p id='roundResult'></p>
+</div>
 
   <script>
   
 let computerScore = 0;
 let playerScore = 0;
-
-
+let overallScore = 0;
+let roundResult = document.querySelector('#roundResult');
 
 function computerPlay() { 
   
-const pick = ["Rock", "Paper", "Scissors"];
-const randomPick = pick[Math.floor(Math.random() * pick.length)];
+	const pick = ["Rock", "Paper", "Scissors"];
+	const randomPick = pick[Math.floor(Math.random() * pick.length)];
 
-return randomPick }
+	return randomPick 
+}
+
+function rockSelection(e) {
+
+game('rock');
+
+}
+
+function paperSelection(e) {
+
+game('paper');
+
+}
+
+function scissorsSelection(e) {
+
+game('scissors');
+
+}
 
 function playRound(playerSelection, computerSelection) {
-	// your code here!
-	
 		
 	if (playerSelection.toLowerCase() === computerSelection.toLowerCase()) {
-	
-	console.log( 'It\'s a draw!' );
-	}
+		overallScore++;
+		console.log( 'It\'s a draw!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'A draw.';
+		}
 	
 	else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'scissors') {
-	playerScore++;
-	console.log( 'Rock beats Scissors, Player wins!' );
+		playerScore++;
+		overallScore++;
+		console.log( 'Rock beats Scissors, Player wins!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'Rock beats Scissors, Player wins.';
 	
 	}
 	
 	else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'rock') {
-	computerScore++;
-	console.log( 'Rock beats Scissors, Computer wins!' );
+		overallScore++;
+		computerScore++;
+		console.log( 'Rock beats Scissors, Computer wins!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'Rock beats Scissors, Computer wins.';
 	}
 	
 	else if (playerSelection.toLowerCase() === 'rock' && computerSelection.toLowerCase() === 'paper') {
-	computerScore++;
-	console.log( 'Paper beats Rock, Computer wins!' );
+		overallScore++;
+		computerScore++;
+		console.log( 'Paper beats Rock, Computer wins!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'Paper beats Rock, Computer wins.';
 	}
 	
 	else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'rock') {
-	playerScore++;
-	console.log( 'Paper beats Rock, Player wins!' );
-	
+		overallScore++;
+		playerScore++;
+		console.log( 'Paper beats Rock, Player wins!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'Paper beats Rock, Player wins.';
 	}
 	
 	else if (playerSelection.toLowerCase() === 'paper' && computerSelection.toLowerCase() === 'scissors') {
-	computerScore++;
-	console.log( 'Scissors beats Paper, Computer wins!' );
+		overallScore++;
+		computerScore++;
+		console.log( 'Scissors beats Paper, Computer wins!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'Scissors beats Paper, Computer wins.';
 	}
 	
 	else if (playerSelection.toLowerCase() === 'scissors' && computerSelection.toLowerCase() === 'paper') {
-	playerScore++;
-	console.log( 'Scissors beats Paper, Player wins!' );
+		overallScore++;
+		playerScore++;
+		console.log( 'Scissors beats Paper, Player wins!' );
+		roundResult.textContent = 'Round '+ overallScore + ' result: ' + 'Scissors beats Paper, Player wins.';
 	}
 }
 
-function game() {
-let computerSelection = computerPlay();
-let playerSelection = window.prompt('Choose your fighter!');
-playRound(playerSelection, computerSelection);
+function game(playerSelection) {
 
-let computerSelection2 = computerPlay();
-let playerSelection2 = window.prompt('Choose your fighter!');
-playRound(playerSelection2, computerSelection2);
+	let computerSelection = computerPlay();
+	
+	playRound(playerSelection, computerSelection);
 
-let computerSelection3 = computerPlay();
-let playerSelection3 = window.prompt('Choose your fighter!');
-playRound(playerSelection3, computerSelection3);
+	if (overallScore>=5) {
 
-let computerSelection4 = computerPlay();
-let playerSelection4 = window.prompt('Choose your fighter!');
-playRound(playerSelection4, computerSelection4);
+		if (playerScore>computerScore) {
+			console.log ( 'Player wins the game ' + playerScore + ' to ' + computerScore + '!' );
+			roundResult.textContent = 'Player wins the game ' + playerScore + ' to ' + computerScore + '!';
+		}
 
-let computerSelection5 = computerPlay();
-let playerSelection5 = window.prompt('Choose your fighter!');
-playRound(playerSelection5, computerSelection5);
+		else if (computerScore>playerScore) {
+			console.log ( 'Computer wins the game ' + computerScore + ' to ' + playerScore + '!' );
+			roundResult.textContent = 'Computer wins the game ' + computerScore + ' to ' + playerScore + '!';
+		}
+		
+		else {
+			console.log ( 'It appears we have a draw!' );
+			roundResult.textContent = 'Both Player and Computer point count equals ' + playerScore + ', therefore it is a draw.';
+		}
 
-if (playerScore>computerScore) {
-alert ( 'Player wins the game ' + playerScore + ' to ' + computerScore + '!' );
-}
+		playerScore = 0;
+		computerScore = 0;
+		overallScore = 0;
 
-if (computerScore>playerScore) {
-alert ( 'Skynet wins the game ' + computerScore + ' to ' + playerScore + '!' );
-}
-
-else {
-alert ( 'It appears we have a draw!' );
-}
-
+	}
 
 }
+
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+
+rock.addEventListener('click', rockSelection);
+paper.addEventListener('click', paperSelection);
+scissors.addEventListener('click', scissorsSelection);
 
 
 
